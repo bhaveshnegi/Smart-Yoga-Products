@@ -1,7 +1,12 @@
+"use client";
+
 import Link from 'next/link';
-import '../../styles/layout.css'; // Import styles
+import { useCart } from './CartContext';
+import '../../styles/layout.css';
 
 export default function Layout({ children }) {
+  const { cart } = useCart();
+
   return (
     <div>
       <header>
@@ -13,6 +18,11 @@ export default function Layout({ children }) {
             </li>
             <li>
               <Link href="/products">Products</Link>
+            </li>
+            <li>
+              <Link href="/cart">
+                Cart <span>({cart.length})</span>
+              </Link>
             </li>
           </ul>
         </nav>
