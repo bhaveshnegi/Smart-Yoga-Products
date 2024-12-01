@@ -1,0 +1,50 @@
+/* src/styles/blogs.css */
+
+.blogs-container {
+    padding: 2rem;
+  }
+  
+  .blogs-container h2 {
+    color: #333;
+    margin-bottom: 1rem;
+  }
+  
+  .blog-preview {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    background-color: #f9f9f9;
+  }
+  
+  .blog-preview h3 {
+    margin: 0 0 0.5rem 0;
+  }
+  
+  .read-more-button {
+    padding: 0.5rem 1rem;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .read-more-button:hover {
+    background-color: #2980b9;
+  }
+  
+  .blog-details {
+    padding: 2rem;
+  }
+  
+  .blog-details h2 {
+    color: #333;
+    margin-bottom: 1rem;
+  }
+  
+  .blog-not-found {
+    text-align: center;
+    padding: 2rem;
+  }
+  

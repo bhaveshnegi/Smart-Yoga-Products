@@ -24,6 +24,9 @@ export default function Layout({ children }) {
                 Cart <span>({cart.length})</span>
               </Link>
             </li>
+            <li>
+            <Link href="/blogs">Blog</Link>
+            </li>
           </ul>
         </nav>
       </header>
