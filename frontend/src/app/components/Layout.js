@@ -27,6 +27,12 @@ export default function Layout({ children }) {
             <li>
             <Link href="/blogs">Blog</Link>
             </li>
+            <li>
+            <Link href="/social-media">Social Media</Link>
+            </li>
+            <li>
+            <Link href="/admin">Admin</Link>
+            </li>
           </ul>
         </nav>
       </header>

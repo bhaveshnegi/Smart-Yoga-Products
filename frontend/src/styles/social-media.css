@@ -1,0 +1,27 @@
+/* src/styles/social-media.css */
+
+.social-media-container {
+    padding: 2rem;
+  }
+  
+  .social-media-container h2 {
+    color: #333;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  .instagram-feed {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+  }
+  
+  .instagram-post {
+    width: 350px;
+    height: 450px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
