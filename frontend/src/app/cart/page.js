@@ -21,6 +21,7 @@ export default function Cart() {
             <div>
               {cart.map((item) => (
                 <div key={item.id} className="cart-item">
+                  <img src={item.image} alt={item.name} className="cart-item-image" />
                   <div>
                     <h3>{item.name}</h3>
                     <p>Price: ${item.price.toFixed(2)}</p>

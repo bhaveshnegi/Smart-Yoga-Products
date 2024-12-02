@@ -21,7 +21,12 @@ export default function ProductDetails({ params }) {
 
   return (
     <Layout>
-      <div style={{ padding: '2rem' }}>
+      <div className="product-details-container" style={{ padding: '2rem' }}>
+      <img
+          src={product.image}
+          alt={product.name}
+          className="product-image-details"
+        />
         <h2>{product.name}</h2>
         <p>{product.description}</p>
         <p>Price: ${product.price.toFixed(2)}</p>
