@@ -11,7 +11,10 @@ export default function Home() {
         <div className="hero-banner">
           <h1>Embrace Wellness with Smart Yoga Products</h1>
           <p>Discover a better way to enhance your yoga journey with our smart tools.</p>
-          <button className="shop-now-btn">Shop Now</button>
+          <Link href="/products">
+            <button className="shop-now-btn">Shop Now</button>
+          </Link>
+          
         </div>
 
         {/* Benefits Section */}
