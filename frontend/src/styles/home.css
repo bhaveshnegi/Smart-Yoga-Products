@@ -1,13 +1,64 @@
 .home-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 80vh;
-    background-color: #fff;
-  }
-  
-  .home-container h2 {
-    color: #333;
-    font-size: 2rem;
-  }
-  
+  text-align: center;
+  padding: 20px;
+}
+
+.hero-banner {
+  background: url('/images/yoga-banner.jpg') no-repeat center center;
+  background-size: cover;
+  padding: 50px;
+  color: black;
+}
+
+.hero-banner h1 {
+  font-size: 2.5em;
+}
+
+.shop-now-btn {
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.benefits-section {
+  padding: 30px;
+}
+
+.benefits {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.benefit img {
+  width: 50px;
+  height: 50px;
+}
+
+.featured-products {
+  padding: 30px;
+}
+
+.product-list {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.product-card {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+}
+
+.product-card img {
+  margin-bottom: 10px;
+}
+
+.social-media-section {
+  padding: 30px;
+}
