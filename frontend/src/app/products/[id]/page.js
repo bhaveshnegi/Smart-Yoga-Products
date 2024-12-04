@@ -13,7 +13,7 @@ export default function ProductDetails({ params }) {
     // Fetch the product details from your backend
     const fetchProduct = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/products/${id}`); // Backend endpoint
+        const res = await fetch(`https://smart-yoga-products-backend.onrender.com/api/products/${id}`); // Backend endpoint
         if (!res.ok) throw new Error('Failed to fetch product');
         const data = await res.json();
         setProduct(data); // Set the product data to the state
