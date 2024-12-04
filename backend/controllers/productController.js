@@ -27,7 +27,7 @@ const getProductById = async (req, res) => {
 const createProduct = async (req, res) => {
   try {
     const { name, price, description } = req.body;
-    const imagePath = req.file ? `http://localhost:5000/uploads/${req.file.filename}` : null;
+    const imagePath = req.file ? `https://smart-yoga-products-backend.onrender.com/uploads/${req.file.filename}` : null;
     const newProduct = await Product.create({ name, price, description, image: imagePath });
     res.status(201).json(newProduct);
   } catch (error) {
