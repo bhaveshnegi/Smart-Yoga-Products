@@ -7,7 +7,7 @@ export default function ManageBlogs() {
 
   useEffect(() => {
     const fetchBlogs = async () => {
-      const { data } = await axios.get("http://localhost:5000/api/blogs");
+      const { data } = await axios.get("https://smart-yoga-products-backend.onrender.com/api/blogs");
       setBlogs(data);
     };
     fetchBlogs();
@@ -19,7 +19,7 @@ export default function ManageBlogs() {
     formData.append('content', newBlog.content);
 
     try {
-      const { data } = await axios.post("http://localhost:5000/api/blogs", newBlog);
+      const { data } = await axios.post("https://smart-yoga-products-backend.onrender.com/api/blogs", newBlog);
       setBlogs([...blogs, data]);
       setNewBlog({ title: "", content: "" });
     } catch (error) {
@@ -29,7 +29,7 @@ export default function ManageBlogs() {
 
   const deleteBlog = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/blogs/${id}`);
+      await axios.delete(`https://smart-yoga-products-backend.onrender.com/api/blogs/${id}`);
       setBlogs(blogs.filter((blog) => blog.id !== id));
     } catch (error) {
       console.error("Error deleting blog:", error);
