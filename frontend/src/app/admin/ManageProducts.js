@@ -13,7 +13,7 @@ export default function ManageProducts() {
   // Fetch all products from the backend
   const fetchProducts = async () => {
     try {
-      const { data } = await axios.get("http://localhost:5000/api/products");
+      const { data } = await axios.get("https://smart-yoga-products-backend.onrender.com/api/products");
       setProducts(data);
     } catch (error) {
       console.error("Error fetching products:", error);
@@ -55,7 +55,7 @@ export default function ManageProducts() {
     formData.append('image', newProduct.image); // File object
 
     try {
-      const { data } = await axios.post("http://localhost:5000/api/products", formData, {
+      const { data } = await axios.post("https://smart-yoga-products-backend.onrender.com/api/products", formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       setProducts([...products, data]);
@@ -67,7 +67,7 @@ export default function ManageProducts() {
 
   const deleteProduct = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/products/${id}`);
+      await axios.delete(`https://smart-yoga-products-backend.onrender.com/api/products/${id}`);
       setProducts(products.filter((product) => product._id !== id));
     } catch (error) {
       console.error("Error deleting product:", error);
