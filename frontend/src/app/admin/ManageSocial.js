@@ -7,7 +7,7 @@ export default function ManageSocial() {
 
   useEffect(() => {
     const fetchLinks = async () => {
-      const { data } = await axios.get("http://localhost:5000/api/social");
+      const { data } = await axios.get("https://smart-yoga-products-backend.onrender.com/api/social");
       setSocialLinks(data);
     };
     fetchLinks();
@@ -17,7 +17,7 @@ export default function ManageSocial() {
     try {
       const { platform, url } = newLink;
       const response = await axios.put(
-        `http://localhost:5000/api/social/${platform}`,  // Correct URL
+        `https://smart-yoga-products-backend.onrender.com/api/social/${platform}`,  // Correct URL
         { url }
       );
       console.log("Social link updated:", response.data);
