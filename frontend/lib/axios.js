@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:5000/api',  // Adjust this if your backend runs on a different URL
+  baseURL: 'https://smart-yoga-products-backend.onrender.com/api',  // Adjust this if your backend runs on a different URL
 });
 
 export default axiosInstance;
