@@ -6,7 +6,7 @@ import Link from "next/link";
 export default async function BlogList() {
   let blogs = [];
   try {
-    const res = await fetch("http://localhost:5000/api/blogs");
+    const res = await fetch("https://smart-yoga-products-backend.onrender.com/api/blogs");
     if (!res.ok) throw new Error("Failed to fetch blogs");
     blogs = await res.json();
   } catch (error) {
