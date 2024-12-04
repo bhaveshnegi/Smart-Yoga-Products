@@ -13,7 +13,7 @@ export default function BlogDetails({ params }) {
     // Fetch the blog details from your backend
     const fetchBlog = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/blogs/${id}`);
+        const res = await fetch(`https://smart-yoga-products-backend.onrender.com/api/blogs/${id}`);
         if (!res.ok) {
           const errorData = await res.json(); // Parse backend error response
           throw new Error(errorData.message || "Failed to fetch blog");
