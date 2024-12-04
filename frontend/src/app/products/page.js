@@ -5,7 +5,7 @@ import Link from "next/link"; // Import Link for navigation
 export default async function Products() {
   let products = [];
   try {
-    const res = await fetch("http://localhost:5000/api/products");
+    const res = await fetch("https://smart-yoga-products-backend.onrender.com/api/products");
     if (!res.ok) throw new Error("Failed to fetch products");
     products = await res.json();
   } catch (error) {
