@@ -1,13 +1,29 @@
 "use client";
 
 import Layout from '../../components/Layout';
-import products from '../../../data/products';
 import { useCart } from '../../components/CartContext';
+import { useEffect, useState } from 'react';
 
 export default function ProductDetails({ params }) {
   const { id } = params;
-  const product = products.find((p) => p.id === parseInt(id));
+  const [product, setProduct] = useState(null);
   const { addToCart } = useCart();
+
+  useEffect(() => {
+    // Fetch the product details from your backend
+    const fetchProduct = async () => {
+      try {
+        const res = await fetch(`http://localhost:5000/api/products/${id}`); // Backend endpoint
+        if (!res.ok) throw new Error('Failed to fetch product');
+        const data = await res.json();
+        setProduct(data); // Set the product data to the state
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchProduct();
+  }, [id]); // Re-fetch if the ID changes
 
   if (!product) {
     return (
@@ -22,7 +38,7 @@ export default function ProductDetails({ params }) {
   return (
     <Layout>
       <div className="product-details-container" style={{ padding: '2rem' }}>
-      <img
+        <img
           src={product.image}
           alt={product.name}
           className="product-image-details"

@@ -1,16 +1,32 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function ManageSocial() {
-  const [socialLinks, setSocialLinks] = useState({
-    instagram: "https://www.instagram.com",
-    facebook: "https://www.facebook.com",
-  });
+  const [socialLinks, setSocialLinks] = useState({});
   const [newLink, setNewLink] = useState({ platform: "", url: "" });
 
-  const updateSocialLink = () => {
-    setSocialLinks({ ...socialLinks, [newLink.platform]: newLink.url });
-    setNewLink({ platform: "", url: "" });
+  useEffect(() => {
+    const fetchLinks = async () => {
+      const { data } = await axios.get("http://localhost:5000/api/social");
+      setSocialLinks(data);
+    };
+    fetchLinks();
+  }, []);
+
+  const updateSocialLink = async () => {
+    try {
+      const { platform, url } = newLink;
+      const response = await axios.put(
+        `http://localhost:5000/api/social/${platform}`,  // Correct URL
+        { url }
+      );
+      console.log("Social link updated:", response.data);
+      setNewLink({ platform: "", url: "" });
+    } catch (error) {
+      console.error("Error updating social link:", error);
+    }
   };
+  
 
   return (
     <div>
@@ -32,8 +48,11 @@ export default function ManageSocial() {
       </div>
       <div>
         <h4>Current Social Links:</h4>
-        <p>Instagram: {socialLinks.instagram}</p>
-        <p>Facebook: {socialLinks.facebook}</p>
+        {Object.entries(socialLinks).map(([platform, url]) => (
+          <p key={platform}>
+            {platform.charAt(0).toUpperCase() + platform.slice(1)}: <a href={url}>{url}</a>
+          </p>
+        ))}
       </div>
     </div>
   );

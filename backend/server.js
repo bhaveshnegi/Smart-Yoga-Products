@@ -1,49 +1,35 @@
 const express = require('express');
-const mongoose = require('mongoose');
-const multer = require("multer");
+const dotenv = require('dotenv');
 const cors = require('cors');
-require('dotenv').config();
+const connectDB = require('./config/db');
 const productRoutes = require('./routes/productRoutes');
-const blogRoutes = require('./routes/blogRoutes');
+const path = require('path');
+const blogRoutes = require("./routes/blogRoutes");
+const socialRoutes = require("./routes/socialRoutes");
+
+dotenv.config();
+connectDB();
 
 const app = express();
-
-// Middleware
-app.use(express.json()); // for parsing application/json
-app.use(cors()); // Enable CORS for cross-origin requests
-
-// MongoDB connection
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('MongoDB connected'))
-  .catch((err) => console.log(err));
-
-// Basic route
-app.get('/', (req, res) => {
-  res.send('Backend is running');
-});
-
-const storage = multer.diskStorage({
-    destination: './upload/images',
-    filename: (req, file, cb) => {
-        return cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`);
-    }
-});
-
-const upload = multer({ storage: storage });
-
-app.post("/upload", upload.single('product'), (req, res) => {
-    res.json({
-        success: 1,
-        img_url: `http://localhost:${port}/images/${req.file.filename}`
-    });
-});
-
-app.use('/images', express.static('upload/images'));
+app.use(express.json());
+app.use(cors({ origin: 'http://localhost:3000' }));
 
 app.use('/api/products', productRoutes);
-app.use('/api/blogs', blogRoutes);
 
-const port = process.env.PORT || 5000;
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+app.use((req, res, next) => {
+  console.log(`Request received: ${req.method} ${req.path}`);
+  next();
 });
+
+
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+app.use("/api/blogs", blogRoutes);
+app.use("/api/social", socialRoutes);
+
+app.get('/', (req, res) => {
+  res.send('API is running...');
+});
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

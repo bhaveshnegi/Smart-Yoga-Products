@@ -1,20 +1,39 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function ManageBlogs() {
-  const [blogs, setBlogs] = useState([
-    { id: 1, title: "The Benefits of Yoga", content: "Yoga improves mental and physical health." },
-    { id: 2, title: "Yoga for Beginners", content: "Start your yoga journey with simple poses." },
-  ]);
+  const [blogs, setBlogs] = useState([]);
   const [newBlog, setNewBlog] = useState({ title: "", content: "" });
 
-  const addBlog = () => {
-    const newId = blogs.length + 1;
-    setBlogs([...blogs, { ...newBlog, id: newId }]);
-    setNewBlog({ title: "", content: "" });
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      const { data } = await axios.get("http://localhost:5000/api/blogs");
+      setBlogs(data);
+    };
+    fetchBlogs();
+  }, []);
+
+  const addBlog = async () => {
+    const formData = new FormData();
+    formData.append('title', newBlog.title);
+    formData.append('content', newBlog.content);
+
+    try {
+      const { data } = await axios.post("http://localhost:5000/api/blogs", newBlog);
+      setBlogs([...blogs, data]);
+      setNewBlog({ title: "", content: "" });
+    } catch (error) {
+      console.error("Error adding blog:", error);
+    }
   };
 
-  const deleteBlog = (id) => {
-    setBlogs(blogs.filter((blog) => blog.id !== id));
+  const deleteBlog = async (id) => {
+    try {
+      await axios.delete(`http://localhost:5000/api/blogs/${id}`);
+      setBlogs(blogs.filter((blog) => blog.id !== id));
+    } catch (error) {
+      console.error("Error deleting blog:", error);
+    }
   };
 
   return (

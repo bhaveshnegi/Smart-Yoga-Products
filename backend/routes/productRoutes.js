@@ -1,46 +1,27 @@
 const express = require('express');
-const Product = require('../models/Product');
 const router = express.Router();
+const upload = require('../middlewares/uploadMiddleware');
+const {
+  getAllProducts,
+  getProductById,
+  createProduct,
+  updateProduct,
+  deleteProduct,
+} = require('../controllers/productController');
 
 // Get all products
-router.get('/', async (req, res) => {
-  try {
-    const products = await Product.find();
-    res.json(products);
-  } catch (err) {
-    res.status(400).send(err);
-  }
-});
+router.get('/', getAllProducts);
 
-// Add a new product
-router.post('/', async (req, res) => {
-  try {
-    const newProduct = new Product(req.body);
-    await newProduct.save();
-    res.status(201).json(newProduct);
-  } catch (err) {
-    res.status(400).send(err);
-  }
-});
+// Get a product by ID
+router.get('/:id', getProductById);
+
+// Create a new product with image upload
+router.post('/', upload.single('image'), createProduct);
 
 // Update a product
-router.put('/:id', async (req, res) => {
-  try {
-    const updatedProduct = await Product.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    res.json(updatedProduct);
-  } catch (err) {
-    res.status(400).send(err);
-  }
-});
+router.put('/:id', upload.single('image'), updateProduct);
 
 // Delete a product
-router.delete('/:id', async (req, res) => {
-  try {
-    await Product.findByIdAndDelete(req.params.id);
-    res.status(204).send();
-  } catch (err) {
-    res.status(400).send(err);
-  }
-});
+router.delete('/:id', deleteProduct);
 
 module.exports = router;
