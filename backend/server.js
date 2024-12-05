@@ -12,7 +12,7 @@ connectDB();
 
 const app = express();
 app.use(express.json());
-app.use(cors({ origin: 'http://localhost:3000' }));
+app.use(cors({ origin: 'https://smart-yoga-products-one.vercel.app/' }));
 
 app.use('/api/products', productRoutes);
 
